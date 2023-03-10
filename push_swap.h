@@ -31,7 +31,7 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 char	**split_args(char **str);
 int	string_validator(char *str);
 void	check_double(char **str);
-void	swap_top_a(t_stack *stack_a);
+void	swap_a(t_stack *stack_a);
 // void	ft_lstclear(t_list **lst, void (*del)(void*));
 // void	ft_lstdelone(t_list *lst, void (*del)(void*));
 // void	ft_lstiter(t_list *lst, void (*f)(void *));
@@ -50,7 +50,9 @@ void	rotate_a(t_stack *stack);
 void	reverse_rotate_a(t_stack *stack);
 
 
-
+void    sorting_list(t_list *l_numbers);
+int		bigest(t_stack *stack_a);
+int		smallest(t_stack *stack);
 
 
 #endif

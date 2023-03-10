@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 16:52:45 by khaimer           #+#    #+#             */
-/*   Updated: 2023/03/03 19:50:24 by khaimer          ###   ########.fr       */
+/*   Updated: 2023/03/10 20:34:46 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,27 @@ int main(int argc, char **argv)
 	                              								// linked list printed
 	free(tab); //freeee
 	list_to_stack(stack_a,l_numbers);
-	reverse_rotate_a(stack_a);
-	
+	if(stack_a->size <= 3)
+	{
+		if(stack_a->ptr->content == bigest(stack_a))
+			rotate_a(stack_a);
+		if(stack_a->ptr->next->content == bigest(stack_a))
+			reverse_rotate_a(stack_a);
+		if(stack_a->ptr->next->content == smallest(stack_a) && stack_a->ptr->next->next->content == bigest(stack_a))
+			swap_a(stack_a);
+	}
+	// sorting_list(l_numbers);
+	// while (l_numbers)
+	// {
+	// 	printf("%d\n", l_numbers->content);
+	// 	l_numbers = l_numbers->next;
+	// } (Sort the linked list)
 	while (stack_a->ptr)
 	{
-		printf("ss = %d\n", stack_a->ptr->content);
+		printf("ps = %d\n", stack_a->ptr->content);
 		stack_a->ptr = stack_a->ptr->next;
 	} //LOOOP TEST;
+	printf("%d",stack_a->size);
 
 	
 	
