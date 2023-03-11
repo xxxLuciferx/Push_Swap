@@ -19,11 +19,6 @@ typedef struct s_stack
 	int size;
 }	t_stack ;
 
-typedef struct s_stacks
-{
-	t_stack *stack_a;
-	t_stack *stack_b;
-}	t_stacks;
 
 int	ft_atoi(const char *str);
 void	ft_lstadd_back(t_list **lst, t_list *new);
@@ -53,6 +48,8 @@ void	reverse_rotate_a(t_stack *stack);
 void    sorting_list(t_list *l_numbers);
 int		bigest(t_stack *stack_a);
 int		smallest(t_stack *stack);
+void	sort_3(t_stack *stack);
+void	sort_5(stack_a);
 
 
 #endif

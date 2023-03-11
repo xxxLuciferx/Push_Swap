@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 16:52:45 by khaimer           #+#    #+#             */
-/*   Updated: 2023/03/10 20:34:46 by khaimer          ###   ########.fr       */
+/*   Updated: 2023/03/11 18:33:00 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,11 @@ int main(int argc, char **argv)
 	int int_atoi;
 	t_list *l_numbers;
 	t_stack *stack_a;
-
+	t_stack *stack_b;
+	
+	stack_b = malloc(sizeof(t_stack));
 	stack_a = malloc(sizeof(t_stack));
+	stack_b->ptr = NULL;
 	i = 0;
 	ar = 1;
 	while (ar < argc && argc > 1)
@@ -51,27 +54,37 @@ int main(int argc, char **argv)
 	                              								// linked list printed
 	free(tab); //freeee
 	list_to_stack(stack_a,l_numbers);
+	// printf("ok");
+	// printf("%d\n",bigest(stack_a));
 	if(stack_a->size <= 3)
-	{
-		if(stack_a->ptr->content == bigest(stack_a))
-			rotate_a(stack_a);
-		if(stack_a->ptr->next->content == bigest(stack_a))
-			reverse_rotate_a(stack_a);
-		if(stack_a->ptr->next->content == smallest(stack_a) && stack_a->ptr->next->next->content == bigest(stack_a))
-			swap_a(stack_a);
-	}
+		sort_3(stack_a);
+	if(stack_a->size > 3)
+		sort_5(stack_a);
 	// sorting_list(l_numbers);
 	// while (l_numbers)
 	// {
 	// 	printf("%d\n", l_numbers->content);
 	// 	l_numbers = l_numbers->next;
 	// } (Sort the linked list)
-	while (stack_a->ptr)
-	{
-		printf("ps = %d\n", stack_a->ptr->content);
-		stack_a->ptr = stack_a->ptr->next;
-	} //LOOOP TEST;
-	printf("%d",stack_a->size);
+	
+	// push(stack_b,pop(stack_a));
+
+	// while (stack_a->ptr)
+	// {
+	// 	printf("%d\n", stack_a->ptr->content);
+	// 	stack_a->ptr = stack_a->ptr->next;
+	// }
+	// printf("%c\n", 'a');
+	// while (stack_b->ptr)
+	// {
+	// 	printf("   %d\n", stack_b->ptr->content);
+	// 	stack_b->ptr = stack_b->ptr->next;
+	// }
+	// printf("   %c\n", 'b');
+	
+	// printf("stack b = %d\n",stack_b->ptr->content);
+	// printf("stack b size = %d\n",stack_b->size);
+	
 
 	
 	

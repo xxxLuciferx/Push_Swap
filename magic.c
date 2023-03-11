@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 17:34:39 by khaimer           #+#    #+#             */
-/*   Updated: 2023/03/10 19:18:37 by khaimer          ###   ########.fr       */
+/*   Updated: 2023/03/11 18:35:18 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,17 @@ int pop(t_stack *stack)
 	return(content);
 }
 
-void	push(t_stack *stack, int content)
+void		push(t_stack *stack, int content)
 {
 	t_list *node;
+	
+	if(stack->ptr == NULL)
+	{
+		node = ft_lstnew(content);
+		ft_lstadd_front(&stack->ptr, node);
+		stack->size = 1;
+		return;
+	}
 	node = ft_lstnew(content);
 	ft_lstadd_back(&stack->ptr, node);
 	stack->size++;
@@ -56,13 +64,13 @@ int		bigest(t_stack *stack)
 {
 	int biggest_number;
 	t_list *ptr;
-
-	ptr = stack->ptr;
-	biggest_number = ptr->content;
-	while (ptr->next)
+	
+	biggest_number = stack->ptr->content;
+	ptr = stack->ptr->next;
+	while (ptr)
 	{
-		if(ptr->content < ptr->next->content)
-			biggest_number = ptr->next->content;
+		if(biggest_number < ptr->content)
+			biggest_number = ptr->content;
 		ptr = ptr->next;
 	}
 	return(biggest_number);
@@ -82,4 +90,28 @@ int		smallest(t_stack *stack)
 		ptr = ptr->next;
 	}
 	return(smallest_number);
+}
+
+void	sort_3(t_stack *stack)
+{
+	if(stack->ptr->content == bigest(stack) && stack->ptr->next->content == bigest(stack))
+	{
+		rotate_a(stack);
+		return;
+	}
+	if(stack->ptr->content == bigest(stack))
+		rotate_a(stack);
+	if(stack->ptr->next->content == bigest(stack))
+		reverse_rotate_a(stack);
+	if(stack->ptr->next->content == smallest(stack) && stack->ptr->next->next->content == bigest(stack))
+		swap_a(stack);
+}
+
+void	sort_5(stack_a)
+{
+	while (stack_a->ptr)
+	{
+		
+	}
+	
 }
