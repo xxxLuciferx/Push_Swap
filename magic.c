@@ -6,11 +6,20 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 17:34:39 by khaimer           #+#    #+#             */
-/*   Updated: 2023/03/11 18:35:18 by khaimer          ###   ########.fr       */
+/*   Updated: 2023/03/13 18:54:38 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void		push(t_stack *stack, int content)
+{
+	t_list *node;
+	
+	node = ft_lstnew(content);
+	ft_lstadd_back(&stack->ptr, node);
+	stack->size++;
+}
 
 int pop(t_stack *stack)
 {
@@ -23,22 +32,6 @@ int pop(t_stack *stack)
 	stack->size--;
 	free(ptr);
 	return(content);
-}
-
-void		push(t_stack *stack, int content)
-{
-	t_list *node;
-	
-	if(stack->ptr == NULL)
-	{
-		node = ft_lstnew(content);
-		ft_lstadd_front(&stack->ptr, node);
-		stack->size = 1;
-		return;
-	}
-	node = ft_lstnew(content);
-	ft_lstadd_back(&stack->ptr, node);
-	stack->size++;
 }
 
 void    sorting_list(t_list *l_numbers)
@@ -59,6 +52,18 @@ void    sorting_list(t_list *l_numbers)
             l_numbers = l_numbers->next;
     }
 }
+
+
+
+void		push_to_a(t_stack *stack, int content)
+{
+	t_list *node;
+	
+	node = ft_lstnew(content);
+	ft_lstadd_front(&stack->ptr,node);
+	stack->size++;
+}
+
 
 int		bigest(t_stack *stack)
 {
@@ -94,11 +99,11 @@ int		smallest(t_stack *stack)
 
 void	sort_3(t_stack *stack)
 {
-	if(stack->ptr->content == bigest(stack) && stack->ptr->next->content == bigest(stack))
-	{
-		rotate_a(stack);
-		return;
-	}
+	// if(stack->ptr->content == bigest(stack) && stack->ptr->next->content == bigest(stack))
+	// {
+	// 	rotate_a(stack);
+	// 	return;
+	// }
 	if(stack->ptr->content == bigest(stack))
 		rotate_a(stack);
 	if(stack->ptr->next->content == bigest(stack))
@@ -107,11 +112,15 @@ void	sort_3(t_stack *stack)
 		swap_a(stack);
 }
 
-void	sort_5(stack_a)
+void	sort_5(t_tools *tools)
 {
-	while (stack_a->ptr)
+	while (tools->stack_a->size > 3)
 	{
-		
+		while (tools->stack_a->ptr->content != smallest(tools->stack_a))
+			rotate_a(tools->stack_a);
+		push_b(tools);
 	}
-	
+	sort_3(tools->stack_a);
+	while (tools->stack_b->size > 0)
+		push_a(tools);
 }

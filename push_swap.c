@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 16:52:45 by khaimer           #+#    #+#             */
-/*   Updated: 2023/03/11 18:33:00 by khaimer          ###   ########.fr       */
+/*   Updated: 2023/03/13 22:53:07 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,75 +15,69 @@
 
 void	crush(void)
 {
-	write(2, "Error", 5);
+	write(1, "Error", 5);
 	exit(0);
 }
 
 int main(int argc, char **argv)
 {
 	int i;
-	int ar;
-	char **tab;
-	int int_atoi;
-	t_list *l_numbers;
-	t_stack *stack_a;
-	t_stack *stack_b;
+	t_tools *tools;
 	
-	stack_b = malloc(sizeof(t_stack));
-	stack_a = malloc(sizeof(t_stack));
-	stack_b->ptr = NULL;
+	tools = malloc(sizeof(t_tools));
+	tools->arg = 1;
 	i = 0;
-	ar = 1;
-	while (ar < argc && argc > 1)
+	while (tools->arg < argc && argc > 1)
 	{	
-		if(!string_validator(argv[ar]))
+		if(!string_validator(argv[tools->arg]))
 			crush();
-		ar++;
+		tools->arg++;
 	}
-	tab = split_args(argv);
-	check_double(tab);												//Double fixed :D
+	tools->tab = split_args(argv);
+	check_double(tools);
 	
-	while (tab[i])
-	{
-		int_atoi = ft_atoi(tab[i]);
-		// if(int_atoi > INT_MAX || int_atoi < INT_MIN)
-		// 	crush();
-		ft_lstadd_back(&l_numbers, ft_lstnew(int_atoi));
-		i++;
-	}
-	                              								// linked list printed
-	free(tab); //freeee
-	list_to_stack(stack_a,l_numbers);
-	// printf("ok");
-	// printf("%d\n",bigest(stack_a));
-	if(stack_a->size <= 3)
-		sort_3(stack_a);
-	if(stack_a->size > 3)
-		sort_5(stack_a);
-	// sorting_list(l_numbers);
-	// while (l_numbers)
-	// {
-	// 	printf("%d\n", l_numbers->content);
-	// 	l_numbers = l_numbers->next;
-	// } (Sort the linked list)
 	
-	// push(stack_b,pop(stack_a));
-
-	// while (stack_a->ptr)
+	tools->stack_b = malloc(sizeof(t_stack));
+	tools->stack_a = malloc(sizeof(t_stack));
+	tools->stack_b->ptr = NULL;
+	list_to_stack(tools->stack_a,tools->l_numbers);
+	sorting_list(tools->l_numbers);
+	//--------------------------
+	// if(tools->stack_a->size <= 3)
+	// 	sort_3(tools->stack_a);
+	// if(tools->stack_a->size > 3 && tools->stack_a->size < 6)
+	// 	sort_5(tools);
+	
+	// while (tools->l_numbers)
 	// {
-	// 	printf("%d\n", stack_a->ptr->content);
-	// 	stack_a->ptr = stack_a->ptr->next;
+	// 	printf("%d\n", tools->l_numbers->content);
+	// 	tools->l_numbers = tools->l_numbers->next;
 	// }
-	// printf("%c\n", 'a');
-	// while (stack_b->ptr)
+	
+	// // push(tools->stack_b,pop(tools->stack_a));
+
+	
+	// while (tools->stack_a->ptr)
 	// {
-	// 	printf("   %d\n", stack_b->ptr->content);
-	// 	stack_b->ptr = stack_b->ptr->next;
+	// 	printf("a = %d\n", tools->stack_a->ptr->content);
+	// 	tools->stack_a->ptr = tools->stack_a->ptr->next;
+	// }
+	// while (tools->stack_b->ptr)
+	// {
+	// 	printf("stack b = %d\n", tools->stack_b->ptr->content);
+	// 	tools->stack_b->ptr = tools->stack_b->ptr->next;
+	// }
+
+	// printf("%c\n", 'a');
+	// while (tools->stack_b->ptr)
+	// {
+	// 	printf("   %d\n", tools->stack_b->ptr->content);
+	// 	tools->stack_b->ptr = tools->stack_b->ptr->next;
 	// }
 	// printf("   %c\n", 'b');
 	
-	// printf("stack b = %d\n",stack_b->ptr->content);
-	// printf("stack b size = %d\n",stack_b->size);
+	// printf("size = %d\n",tools->stack_a->size);
+	// printf("stack b size = %d\n",tools->stack_b->size);
 	
 
 	
@@ -154,10 +148,10 @@ int main(int argc, char **argv)
 	// 	cpy = cpy->next;
 	// }
 	// printf("---------\n"); 			//
-	// // while(stack_a->ptr)
+	// // while(tools->stack_a->ptr)
 	// {
-	// 	printf("%d\n",stack_a->ptr->content);
-	// 	stack_a->ptr = stack_a->ptr->next;
+	// 	printf("%d\n",tools->stack_a->ptr->content);
+	// 	tools->stack_a->ptr = tools->stack_a->ptr->next;
 	// }
 	// cpy = l_numbers;
 	// void	rotate_a(cpy);

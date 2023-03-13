@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 19:17:01 by khaimer           #+#    #+#             */
-/*   Updated: 2023/02/13 18:07:59 by khaimer          ###   ########.fr       */
+/*   Updated: 2023/03/13 16:28:26 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*res;
 	int		str1;
@@ -44,5 +44,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (++i < str2)
 		res[i + j] = s2[i];
 	res[i + j] = '\0';
+	free(s1);
 	return (res);
 }
